@@ -2,7 +2,7 @@
 
 - Переименовать .env.example в .env, указать данные БД, APP_URL - указать адрес проекта.
 
-Запустить:
+Выполнить команды:
 - composer update.
 - php artisan key:generate.
 - php artisan migrate.
