@@ -12,7 +12,12 @@ use Illuminate\Support\Str;
 class LinkController extends Controller
 {
 
-
+    /**
+     *  Переадресация по короткой ссылке
+     *
+     * @param $link
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector|void
+     */
     public function index($link)
     {
         $redirect = Cache::get($link);
@@ -34,6 +39,12 @@ class LinkController extends Controller
     }
 
 
+    /**
+     *  Создание ссылки
+     *
+     * @param LinkRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function create(LinkRequest $request)
     {
 
@@ -50,6 +61,13 @@ class LinkController extends Controller
         return Redirect::back()->with('success', \Config::get('app.url') . '/' . $linkModel->processed_link);
     }
 
+
+    /**
+     *
+     * Генерирует короткую ссылку
+     *
+     * @return string
+     */
     public function linkGeneration()
     {
 
@@ -64,6 +82,13 @@ class LinkController extends Controller
 
     }
 
+    /**
+     * Добавляем ссылку в кеш
+     *
+     * @param $processedLink
+     * @param $standardLink
+     * @return string
+     */
     public function addCache($processedLink, $standardLink)
     {
         $expiresAt = Carbon::now()->addMinutes(30);
