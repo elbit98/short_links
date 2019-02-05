@@ -6,4 +6,4 @@
 - composer update.
 - php artisan key:generate.
 - php artisan migrate.
-- chmod 777 -R storage/
+- chmod 775 -R storage/
